@@ -603,6 +603,59 @@ Now, any time you make changes to app.js, Nodemon will automatically restart the
 - **Asynchronous Approach (`3-read_file_async.js`)**: Utilizes promises to handle file reading without blocking the event loop, making it more suitable for scalable applications where multiple tasks need to be executed concurrently.
 
 </details>
+<details>
+<summary>How to verify NodeJs formatting </summary>
+
+```
+npm run lint -- 4-http.js 
+```
+To verify Node.js code formatting according to the rules specified in your package.json, you typically use a linting tool, such as ESLint.
+#### Verifying Code Formatting
+**1. Install ESLint:** If you haven't already set up ESLint in your project, you can do so by running:
+```bash
+npm install eslint --save-dev
+```
+**2. Initialize ESLint Configuration:** You can set up a basic ESLint configuration by running:
+```bash
+npx eslint --init
+```
+Follow the prompts to configure ESLint according to your project requirements.
+
+**3. Create a Configuration File:** Ensure that your ``.eslintrc`` file (created during the initialization) reflects your formatting rules. You can customize it to include your preferences, such as indentation, naming conventions, and use of specific operators.
+
+**4. Add Linting Script in ``package.json``:** You might already have a linting script defined in your package.json under "scripts":
+```json
+"scripts": {
+  "lint": "./node_modules/.bin/eslint",
+  "check-lint": "lint [0-9]*.js"
+}
+```
+**5. Run the Linter:** You can now run the linter on your JavaScript files:
+```bash
+npm run lint
+```
+Or check for specific files or patterns:
+```bash
+npm run check-lint
+```
+
+#### Why Do We Need package.json?
+The ``package.json`` file is a fundamental part of a Node.js project for several reasons:
+
+**1. Project Metadata:** It contains important metadata about your project, such as its name, version, description, author, license, and more. This information can be helpful for anyone looking at your project.
+
+**2. Dependency Management:** It lists the dependencies your project requires, both for production and development. This allows other developers (or deployment environments) to easily install the required packages by running:
+```bash
+npm install
+```
+**3. Script Management:** You can define custom scripts for tasks like running tests, linting code, building assets, and starting the application. This makes it easier to automate common tasks and ensures consistency in how they are executed.
+
+**4. Version Control:** It helps manage versions of your dependencies. When you install a package, ``package.json`` and ``package-lock.json`` (or ``yarn.lock`` if using Yarn) ensure that everyone working on the project uses the same versions of the packages.
+
+**5. Environment Configuration:** You can define environment variables and configurations that can be used throughout your application. This is useful for managing different settings in development and production environments.
+
+**6. Package Publishing:** If you decide to publish your package to the npm registry, ``package.json`` will provide all the necessary information about your package, including its dependencies and how to run it.
+</details>
 
 ## Provided files
 **``database.csv``**
