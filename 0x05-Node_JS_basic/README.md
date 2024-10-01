@@ -584,6 +584,25 @@ Now, any time you make changes to app.js, Nodemon will automatically restart the
 | **Purpose**          | Useful for tools and utilities you want to access anywhere. | Best for project-specific dependencies.               |
 
 </details>
+<details>
+<summary> Synchronous vs. Asynchronous File Reading </summary>
+
+| Feature                           | **2-read_file.js (Synchronous)**              | **3-read_file_async.js (Asynchronous)**       |
+|-----------------------------------|-----------------------------------------------|------------------------------------------------|
+| **File Reading Method**           | `fs.readFileSync`                            | `fs.promises.readFile`                        |
+| **Execution Flow**                | Blocks execution until the file is read      | Non-blocking; allows other code to execute     |
+| **Error Handling**                | Throws an error immediately if file is not found | Handles errors using a promise's `.catch()`    |
+| **Promise**                       | Does not return a promise                     | Returns a promise                              |
+| **Output Timing**                 | Output is displayed only after file reading   | Output can display immediately while reading    |
+| **Concurrency**                   | Not suitable for concurrent I/O operations    | Suitable for concurrent operations              |
+| **Use Case**                      | Simpler use cases where blocking is acceptable | Preferred for web servers and I/O-bound tasks  |
+| **Code Complexity**               | Simpler and easier to read                    | Slightly more complex due to promises          |
+
+### Summary of Differences:
+- **Synchronous Approach (`2-read_file.js`)**: Blocks the event loop, making it simpler but less efficient for handling I/O operations, particularly in applications that require high performance or responsiveness.
+- **Asynchronous Approach (`3-read_file_async.js`)**: Utilizes promises to handle file reading without blocking the event loop, making it more suitable for scalable applications where multiple tasks need to be executed concurrently.
+
+</details>
 
 ## Provided files
 **``database.csv``**
