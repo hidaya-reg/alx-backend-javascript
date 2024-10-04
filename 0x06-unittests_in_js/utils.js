@@ -1,19 +1,16 @@
-// utils.js
-
 const Utils = {
-    calculateNumber: function(type, a, b) {
-      switch (type) {
-        case 'SUM':
-          return Math.round(a) + Math.round(b);
-        case 'SUBTRACT':
-          return Math.round(a) - Math.round(b);
-        case 'DIVIDE':
-          return Math.round(a) / Math.round(b);
-        default:
-          throw new Error('Invalid operation type');
-      }
+  calculateNumber(type, a, b) {
+    if (type === 'SUM') {
+      return Math.round(a) + Math.round(b);
     }
-  };
-  
+    if (type === 'SUBTRACT') {
+      return Math.round(a) - Math.round(b);
+    }
+    if (type === 'DIVIDE') {
+      return Math.round(b) === 0 ? 'Error' : Math.round(a) / Math.round(b);
+    }
+    return 0;
+  },
+};
+
 module.exports = Utils;
-  
