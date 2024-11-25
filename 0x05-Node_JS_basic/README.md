@@ -10,14 +10,16 @@
 ## Learning Objectives
 <details>
 <summary>run javascript using NodeJS</summary>
-Node.js is a runtime environment that allows you to execute JavaScript code outside of a web browser. 
+
+### run javascript using NodeJS
+Node.js is a runtime environment that allows you to execute JavaScript code outside of a web browser.
 
 #### Steps to Run JavaScript with Node.js
-**1. Install Node.js:** 
+**1. Install Node.js:**
 - Download and install Node.js from the official website: [nodejs.org](https://nodejs.org/en).
 - The installer includes npm (Node Package Manager), which is useful for managing packages.
 
-**2. Create a JavaScript File:** Use a text editor to create a new file with a .js extension. For example, app.js
+**2. Create a JavaScript File:** Use a text editor to create a new file with a `.js` extension. For example, `app.js`
 ```js
 // app.js
 console.log("Hello, World!");
@@ -81,7 +83,7 @@ Here, ``require('./mathUtils')`` imports the ``mathUtils`` module, allowing you 
 ```bash
 node app.js
 ```
-**Output** 
+**Output**
 ```makefile
 Sum: 8
 Difference: 2
@@ -109,14 +111,14 @@ In this example, the fs.readFile function reads the contents of example.txt, and
 <details>
 <summary>use process to access command line arguments and the environment</summary>
 
-``process`` module used to access command line arguments and environment variables. 
+``process`` module used to access command line arguments and environment variables.
 
 #### Accessing Command Line Arguments
-``process.argv`` to access command line arguments, which is an array containing the command line arguments passed when starting the Node.js process.
+`process.argv` to access command line arguments, which is an array containing the command line arguments passed when starting the Node.js process.
 
 **1. Command Line Arguments:**
-- The first element (``process.argv[0]``) is the path to the Node.js executable.
-- The second element (``process.argv[1]``) is the path to your script.
+- The first element (`process.argv[0]`) is the path to the Node.js executable.
+- The second element (`process.argv[1]`) is the path to your script.
 - Subsequent elements contain the additional command line arguments.
 
 **Example: Accessing Command Line Arguments**
@@ -169,63 +171,69 @@ const path = process.env.PATH; // Access the PATH environment variable
 console.log(`Current PATH: ${path}`);
 ```
 **Summary**
-``process.argv`` to access command line arguments.
-``process.env`` to access environment variables.
+`process.argv` to access command line arguments.
+`process.env` to access environment variables.
 </details>
 <details>
 <summary>create a small HTTP server using Node JS</summary>
 
-#### Step 1: Set Up Your Project
-**1. Create a new directory for your project:**
-```bash
-mkdir my-http-server
-cd my-http-server
-```
-**2. Initialize a new Node.js project:**
-```bash
-npm init -y
-```
-#### Step 2: Create the HTTP Server
-Create a file named server.js:
+### Create a small HTTP server
+Here's a simple example of an HTTP server in Node.js. This server listens for incoming requests on port 3000 and responds with "Hello, World!" when accessed.
 
+To get started:
+
+1. Make sure Node.js is installed on your system.
+2. Create a new file named server.js and add the following code:
 ```javascript
+// Load the HTTP module
 const http = require('http');
 
-// Create an HTTP server
-const server = http.createServer((req, res) => {
-    // Set the response HTTP header with HTTP status and content type
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+// Define the hostname and port
+const hostname = '127.0.0.1';
+const port = 3000;
 
-    // Send the response body "Hello World"
-    res.end('Hello World\n');
+// Create the HTTP server
+const server = http.createServer((req, res) => {
+  // Set the response HTTP headers
+  res.statusCode = 200; // Status code for "OK"
+  res.setHeader('Content-Type', 'text/plain');
+
+  // Send the response body
+  res.end('Hello, World!\n');
 });
 
-// Server listens on port 3000
-const PORT = 3000;
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
+// Start the server and listen on the defined port
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
 ```
-#### Step 3: Run the Server
-Run your server using Node.js:
+
+**Explanation:**
+- `http.createServer()`: Creates a new HTTP server. The function passed as a parameter to `createServer` is a request listener, which will be called every time a request is made to the server.
+- `res.statusCode`: Sets the status code for the response (200 means "OK").
+- `res.setHeader()`: Sets the `Content-Type` header, indicating that the response body is plain text.
+- `res.end()`: Ends the response and sends "Hello, World!" to the client.
+
+**Running the Server**
+1. Open a terminal in the directory where `server.js` is located.
+2. Run the server with the command:
+
 ```bash
 node server.js
 ```
-#### Step 4: Access the Server
-- Open your web browser and go to ``http://localhost:3000/``.
-- You should see: ``Hello World``.
+3. You should see a message indicating that the server is running:
 
-#### Explanation of the Code
-- **Importing the HTTP Module:** ``const http = require('http');`` imports the built-in HTTP module.
-- **Creating the Server:** ``http.createServer()`` creates an HTTP server that takes a callback function with two parameters: ``req`` (the request object) and ``res`` (the response object).
-- **Sending a Response:** ``res.writeHead(200, { 'Content-Type': 'text/plain' });`` sets the status code to ``200 OK`` and the content type to plain text.
-    + ``res.end('Hello World\n');`` sends the response body and ends the response.
-- **Listening on a Port:** ``server.listen(PORT, () => {...});`` makes the server listen for incoming requests on the specified port (3000 in this case) and logs a message to the console when it's running.
+```arduino
+Server running at http://127.0.0.1:3000/
+```
+Open your browser and go to `http://127.0.0.1:3000/`. You should see "Hello, World!" displayed in the browser.
+
 </details>
 <details>
 <summary>create a small HTTP server using Express JS</summary>
-Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. Here’s how to set up a basic Express server:
 
+Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. Here’s how to set up a basic Express server:
+### create a small HTTP server using Express JS
 #### Step 1: Set Up Your Project
 **1. Create a new directory for your project:**
 ```bash
@@ -315,17 +323,19 @@ app.listen(3000, () => {
 - **Express.js:** Provides built-in features and plugins for session management, error handling, and more, which makes development faster and easier.
 
 In summary, using Node.js for a simple HTTP server gives you low-level control, while using Express.js provides a more robust framework that simplifies development.
-| Feature                     | Node.js HTTP Server                           | Express.js HTTP Server                         |
-|-----------------------------|----------------------------------------------|------------------------------------------------|
-| **Framework**               | Built-in `http` module                       | Web framework built on top of Node.js         |
-| **Code Complexity**         | More boilerplate code                        | Simplified and cleaner syntax                  |
-| **Routing**                 | Manual routing logic required                 | Built-in routing capabilities                   |
-| **Middleware Support**      | No built-in middleware; must implement manually | Extensive middleware support for processing requests |
-| **Error Handling**          | Manual error handling                        | Built-in error handling mechanisms              |
-| **Static File Serving**     | Must implement custom logic                  | Built-in methods for serving static files      |
-| **Learning Curve**          | More technical and less intuitive            | Easier for beginners due to simplicity         |
-| **Use Cases**               | Suitable for lightweight applications         | Ideal for larger applications or APIs          |
-| **Community and Ecosystem** | Limited to core Node.js libraries            | Large ecosystem of plugins and middleware      |
+
+| Feature                     | Node.js HTTP Server                             | Express.js HTTP Server                          |
+|-----------------------------|------------------------------------------------|-------------------------------------------------|
+| **Framework**               | Built-in `http` module                         | Web framework built on top of Node.js           |
+| **Code Complexity**         | More boilerplate code                          | Simplified and cleaner syntax                   |
+| **Routing**                 | Manual routing logic required                  | Built-in routing capabilities                   |
+| **Middleware Support**      | No built-in middleware; must implement manually| Extensive middleware support for processing requests |
+| **Error Handling**          | Manual error handling                          | Built-in error handling mechanisms              |
+| **Static File Serving**     | Must implement custom logic                    | Built-in methods for serving static files       |
+| **Learning Curve**          | More technical and less intuitive              | Easier for beginners due to simplicity          |
+| **Use Cases**               | Suitable for lightweight applications          | Ideal for larger applications or APIs           |
+| **Community and Ecosystem** | Limited to core Node.js libraries              | Large ecosystem of plugins and middleware       |
+
 
 </details>
 <details>
@@ -337,7 +347,7 @@ If you haven't already, create a new Node.js project and install Express:
 npm init -y
 npm install express
 ```
-#### 2. Set Up Your Express App: 
+#### 2. Set Up Your Express App:
 Create a file called ``app.js`` and set up your basic Express application.
 ```javascript
 const express = require('express');
@@ -450,6 +460,8 @@ You can test the following routes in your browser or using tools like Postman:
 </details>
 <details>
 <summary>use ES6 with Node JS with Babel-node</summary>
+
+### Node JS with Babel-node
 Babel is a JavaScript compiler that allows developers to use the latest JavaScript features while maintaining compatibility with older browsers and environments. It transforms ES6 (and beyond) code into a backward-compatible version of JavaScript, enabling developers to write modern syntax and features without worrying about browser support.
 
 #### Key Features of Babel:
@@ -459,7 +471,7 @@ Babel is a JavaScript compiler that allows developers to use the latest JavaScri
 - **Polyfills:** Provides polyfills for new features, allowing them to work in environments that do not support them natively.
 Babel is widely used in modern web development, especially in frameworks like React, Vue, and Angular, to ensure compatibility across different browsers and environments.
 
-### How to use Babel
+#### How to use Babel
 To use ES6 features in Node.js with Babel, you need to set up Babel and configure it to transpile your ES6 code. Here’s a step-by-step guide:
 
 #### Step 1: Initialize Your Project
@@ -521,6 +533,8 @@ Using Babel with Node.js allows you to take advantage of ES6 features, such as a
 </details>
 <details>
 <summary>use Nodemon to develop faster</summary>
+
+### Nodemon
 Nodemon is a utility that automatically monitors for changes in your Node.js applications and automatically restarts the server when it detects changes. This is especially useful during development, as it saves you the hassle of manually stopping and restarting your application every time you make a code change.
 
 #### Key Features of Nodemon:
@@ -574,7 +588,8 @@ nodemon app.js
 Now, any time you make changes to app.js, Nodemon will automatically restart the server, reflecting your changes without manual intervention. This greatly enhances productivity during development.
 
 #### Local vs Global intallation
-| **Aspect**           | **Global Installation**                                 | **Local Installation**                                |
+
+| **Aspect**           | **Global Installation**                                 | **Local Installation**
 |----------------------|--------------------------------------------------------|------------------------------------------------------|
 | **Command**          | `npm install -g nodemon`                               | `npm install --save-dev nodemon`                     |
 | **Scope**            | Available system-wide; can be used in any project.    | Available only in the specific project directory.    |
@@ -589,16 +604,16 @@ Now, any time you make changes to app.js, Nodemon will automatically restart the
 
 | Feature                           | **2-read_file.js (Synchronous)**              | **3-read_file_async.js (Asynchronous)**       |
 |-----------------------------------|-----------------------------------------------|------------------------------------------------|
-| **File Reading Method**           | `fs.readFileSync`                            | `fs.promises.readFile`                        |
+| **File Reading Method**           | `fs.readFileSync`                            | `fs.promises.readFile`
 | **Execution Flow**                | Blocks execution until the file is read      | Non-blocking; allows other code to execute     |
 | **Error Handling**                | Throws an error immediately if file is not found | Handles errors using a promise's `.catch()`    |
-| **Promise**                       | Does not return a promise                     | Returns a promise                              |
+| **Promise**                       | Does not return a promise                     | Returns a promise
 | **Output Timing**                 | Output is displayed only after file reading   | Output can display immediately while reading    |
 | **Concurrency**                   | Not suitable for concurrent I/O operations    | Suitable for concurrent operations              |
 | **Use Case**                      | Simpler use cases where blocking is acceptable | Preferred for web servers and I/O-bound tasks  |
 | **Code Complexity**               | Simpler and easier to read                    | Slightly more complex due to promises          |
 
-### Summary of Differences:
+#### Summary of Differences:
 - **Synchronous Approach (`2-read_file.js`)**: Blocks the event loop, making it simpler but less efficient for handling I/O operations, particularly in applications that require high performance or responsiveness.
 - **Asynchronous Approach (`3-read_file_async.js`)**: Utilizes promises to handle file reading without blocking the event loop, making it more suitable for scalable applications where multiple tasks need to be executed concurrently.
 
@@ -606,8 +621,8 @@ Now, any time you make changes to app.js, Nodemon will automatically restart the
 <details>
 <summary>How to verify NodeJs formatting </summary>
 
-```
-npm run lint -- 4-http.js 
+```bash
+npm run lint -- 4-http.js
 ```
 To verify Node.js code formatting according to the rules specified in your package.json, you typically use a linting tool, such as ESLint.
 #### Verifying Code Formatting
@@ -775,7 +790,7 @@ displayMessage("Hello NodeJS!");
 
 $ node 0-main.js
 Hello NodeJS!
-``` 
+```
 ### 1. Using Process stdin
 Create a program named ``1-stdin.js`` that will be executed through command line:
 - It should display the message ``Welcome to Holberton School``, what is your name? (followed by a new line)
@@ -786,16 +801,16 @@ Create a program named ``1-stdin.js`` that will be executed through command line
 **Requirements:**
 Your code will be tested through a child process, make sure you have everything you need for that.
 ```bash
-$ node 1-stdin.js 
+$ node 1-stdin.js
 Welcome to Holberton School, what is your name?
 Bob
 Your name is: Bob
-$ 
-$ echo "John" | node 1-stdin.js 
+$
+$ echo "John" | node 1-stdin.js
 Welcome to Holberton School, what is your name?
 Your name is: John
 This important software is now closing
-``` 
+```
 ### 2. Reading a file synchronously with Node JS
 Using the database ``database.csv``, create a function ``countStudents`` in the file ``2-read_file.js``
 - Create a function named ``countStudents``. It should accept a path in argument
@@ -827,7 +842,7 @@ $ node 2-main_1.js
 Number of students: 10
 Number of students in CS: 6. List: Johann, Arielle, Jonathan, Emmanuel, Guillaume, Katie
 Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
-``` 
+```
 ### 3. Reading a file asynchronously with Node JS
 Using the database ``database.csv``, create a function ``countStudents`` in the file ``3-read_file_async.js``
 
@@ -874,7 +889,7 @@ Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
 Done!
 ```
 **Tips:** Using asynchronous callbacks is the preferred way to write code in Node to avoid blocking threads
- 
+
 ### 4. Create a small HTTP server using Node's HTTP module
 In a file named ``4-http.js``, create a small HTTP server using the ``http`` module:
 - It should be assigned to the variable ``app`` and this one must be exported
@@ -892,7 +907,7 @@ Hello Holberton School!
 $ curl localhost:1245/any_endpoint && echo ""
 Hello Holberton School!
 ```
- 
+
 ### 5. Create a more complex HTTP server using Node's HTTP module
 In a file named ``5-http.js``, create a small HTTP server using the ``http`` module:
 - It should be assigned to the variable app and this one must be exported
@@ -910,7 +925,7 @@ In terminal 2:
 ```bash
 $ curl localhost:1245 && echo ""
 Hello Holberton School!
-$ 
+$
 $ curl localhost:1245/students && echo ""
 This is the list of our students
 Number of students: 10
@@ -931,7 +946,7 @@ In terminal 2:
 ```bash
 $ curl localhost:1245 && echo ""
 Hello Holberton School!
-$ 
+$
 $ curl localhost:1245/any_endpoint && echo ""
 <!DOCTYPE html>
 <html lang="en">
@@ -942,7 +957,7 @@ $ curl localhost:1245/any_endpoint && echo ""
 <body>
 <pre>Cannot GET /lskdlskd</pre>
 </body>
-</html> 
+</html>
 ```
 ### 7. Create a more complex HTTP server using Express
 In a file named ``7-http_express.js``, recreate the small HTTP server using ``Express``:
@@ -961,7 +976,7 @@ In terminal 2:
 ```bash
 $ curl localhost:1245 && echo ""
 Hello Holberton School!
-$ 
+$
 $ curl localhost:1245/students && echo ""
 This is the list of our students
 Number of students: 10
@@ -1026,15 +1041,15 @@ In terminal 2:
 ```bash
 $ curl localhost:1245 && echo ""
 Hello Holberton School!
-$ 
+$
 $ curl localhost:1245/students && echo ""
 This is the list of our students
 Number of students in CS: 6. List: Johann, Arielle, Jonathan, Emmanuel, Guillaume, Katie
 Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
-$ 
+$
 $ curl localhost:1245/students/SWE && echo ""
 List: Guillaume, Joseph, Paul, Tommy
-$ 
+$
 $ curl localhost:1245/students/French -vvv && echo ""
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
@@ -1058,4 +1073,3 @@ If you want to add test to validate your integration, you will need to add this 
 {
     "presets": [["env", {"exclude": ["transform-regenerator"]}]]
 }
-```
