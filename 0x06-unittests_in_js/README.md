@@ -12,7 +12,7 @@
 <summary>How to use Mocha to write a test suite<summary>
 
 ### Mocha
-Mocha is a test runner. This just means that it is a tool that runs and executes our tests. 
+Mocha is a test runner. This just means that it is a tool that runs and executes our tests.
 #### 1. Install mocha globally to be able to use it on command line:
 ```bash
 npm install -g mocha
@@ -41,7 +41,7 @@ describe('Array', function() {
 ```
 #### 4. Run the test suite
 
-- **Modify package.json:** 
+- **Modify package.json:**
 ```json
 "scripts": {
   "test": "mocha"
@@ -92,17 +92,21 @@ describe('Math operations', function() {
 ### 1. Using Node.js ``assert`` Module
 The ``assert`` module comes built into Node.js. It offers basic assertion methods like ``strictEqual``, ``deepEqual``, and others.
 
-| Assertion Method                       | Description                                               | Example                                                      |
+| Assertion Method                       | Description                                               | Example
+        |
 |----------------------------------------|-----------------------------------------------------------|--------------------------------------------------------------|
 | `assert.strictEqual(a, b)`            | Checks if `a` is strictly equal to `b` (===).            | `assert.strictEqual(1, '1'); // Fails (type difference)`    |
 | `assert.equal(a, b)`                  | Checks if `a` is equal to `b` (==).                      | `assert.equal(1, '1'); // Passes (type coercion)`           |
-| `assert.notStrictEqual(a, b)`         | Checks if `a` is not strictly equal to `b`.              | `assert.notStrictEqual(1, 1); // Fails`                      |
-| `assert.notEqual(a, b)`               | Checks if `a` is not equal to `b`.                       | `assert.notEqual(1, '1'); // Fails`                         |
+| `assert.notStrictEqual(a, b)`         | Checks if `a` is not strictly equal to `b`.              | `assert.notStrictEqual(1, 1); // Fails`
+      |
+| `assert.notEqual(a, b)`               | Checks if `a` is not equal to `b`.                       | `assert.notEqual(1, '1'); // Fails`
+     |
 | `assert.deepEqual(a, b)`              | Checks if `a` and `b` are deeply equal (including objects). | `assert.deepEqual({a: 1}, {a: 1}); // Passes`               |
 | `assert.notDeepEqual(a, b)`           | Checks if `a` and `b` are not deeply equal.              | `assert.notDeepEqual({a: 1}, {a: 2}); // Passes`             |
 | `assert.throws(fn)`                   | Checks if the function `fn` throws an error.             | `assert.throws(() => { throw new Error('Error!'); });`     |
 | `assert.doesNotThrow(fn)`             | Checks if the function `fn` does not throw an error.     | `assert.doesNotThrow(() => { return 1 + 1; });`            |
-| `assert.ok(value)`                    | Checks if `value` is truthy.                             | `assert.ok(true); // Passes`                                 |
+| `assert.ok(value)`                    | Checks if `value` is truthy.                             | `assert.ok(true); // Passes`
+      |
 | `assert.fail([message])`              | Fails the test with an optional message.                 | `assert.fail('This test failed'); // Fails with message`    |
 | `assert.strictEqual(a, b, [message])` | Checks strict equality with an optional message.         | `assert.strictEqual(1, 2, 'Values are not equal'); // Fails with message` |
 
@@ -1011,12 +1015,12 @@ After updating your server and tests, run your tests again: ``npm test``
 5
 > calculateNumber(1.5, 3.7)
 6
-> 
+>
 ```
 
 **Run test**
 ```bash
-bob@dylan:~$ npm test 0-calcul.test.js 
+bob@dylan:~$ npm test 0-calcul.test.js
 
 > task_0@1.0.0 test /root
 > ./node_modules/mocha/bin/mocha "0-calcul.test.js"
@@ -1029,7 +1033,7 @@ bob@dylan:~$ npm test 0-calcul.test.js
 
   130 passing (35ms)
 ```
- 
+
 ### 1. Combining descriptions
 **Create a new file named ``1-calcul.js``:**
 
@@ -1068,7 +1072,7 @@ bob@dylan:~$ npm test 0-calcul.test.js
 > calculateNumber('DIVIDE', 1.4, 0)
 'Error'
 ```
- 
+
 ### 2. Basic test using Chai assertion library
 While using Node assert library is completely valid, a lot of developers prefer to have a behavior driven development style. This type being easier to read and therefore to maintain.
 
@@ -1087,7 +1091,7 @@ While using Node assert library is completely valid, a lot of developers prefer 
 
 - You should be able to run the test suite using ``npm test 2-calcul_chai.test.js``
 - Every test should pass without any warning
- 
+
 ### 3. Spies
 
 Spies are a useful wrapper that will execute the wrapped function, and log useful information (e.g. was it called, with what arguments). Sinon is a library allowing you to create spies.
@@ -1138,7 +1142,7 @@ Stubs are similar to spies. Except that you can provide a different implementati
 - Every test should pass without any warning
 - You should use a ``stub`` to complete this exercise
 - Do not forget to restore the spy and the stub
- 
+
 **Tips:**
 
 - Using stubs allows you to greatly speed up your test. When executing thousands of tests, saving a few seconds is important
@@ -1291,7 +1295,7 @@ Terminal 2
 ```bash
 bob@dylan:~/8-api$  curl http://localhost:7865 ; echo ""
 Welcome to the payment system
-bob@dylan:~/8-api$  
+bob@dylan:~/8-api$
 bob@dylan:~/8-api$ npm test api.test.js
 
 > 8-api@1.0.0 test /root/8-api
@@ -1343,7 +1347,7 @@ Terminal 2
 ```bash
 bob@dylan:~$ curl http://localhost:7865/cart/12 ; echo ""
 Payment methods for cart 12
-bob@dylan:~$ 
+bob@dylan:~$
 bob@dylan:~$ curl http://localhost:7865/cart/hello -v
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
@@ -1352,7 +1356,7 @@ bob@dylan:~$ curl http://localhost:7865/cart/hello -v
 > Host: localhost:7865
 > User-Agent: curl/7.58.0
 > Accept: */*
-> 
+>
 < HTTP/1.1 404 Not Found
 < X-Powered-By: Express
 < Content-Security-Policy: default-src 'none'
@@ -1361,7 +1365,7 @@ bob@dylan:~$ curl http://localhost:7865/cart/hello -v
 < Content-Length: 149
 < Date: Wed, 15 Jul 2020 08:33:44 GMT
 < Connection: keep-alive
-< 
+<
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1415,13 +1419,13 @@ Terminal 2
 ```bash
 bob@dylan:~$ curl http://localhost:7865/available_payments ; echo ""
 {"payment_methods":{"credit_cards":true,"paypal":false}}
-bob@dylan:~$ 
+bob@dylan:~$
 bob@dylan:~$ curl -XPOST http://localhost:7865/login -d '{ "userName": "Betty" }' -H 'Content-Type: application/json' ; echo ""
 Welcome Betty
 ```
 **Tips:**
 - Look at deep equality to compare objects
- 
+
 **Requirements:**
 
 - You should be able to run the test suite using ``npm test api.test.js``
